@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pricing-section .pricing-variant h4 {
+    background-color: #E2E2DF;
+}
+
+@media (min-width: 768px) {
+    .pricing-section .pricing-variant:nth-of-type(2) {
+        @apply -mt-8 -mx-10 z-[1] bg-white;
+    }
+}
+
+
+.pricing-section .pricing-variant:nth-of-type(2) h4 {
+    background-color: #27AAE1;
+}
+
+.pricing-section .pricing-variant ul li {
+    @apply py-4 border-b;
+}
+
+.pricing-section .pricing-variant ul li:last-child {
+    @apply border-0;
+}
+
+.contact {
+    @apply py-4 px-10 bg-orange rounded-full text-white;
+}
