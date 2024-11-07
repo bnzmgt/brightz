@@ -12,7 +12,7 @@
 
                 <!-- Newsletter Text Content -->
                 <div class="mb-3 text-center md:mb-0 md:text-left py-4 md:ml-[calc(16rem)]">
-                    <h4 class="font-bold  text-gray-100 text-4xl mb-4">Jadikan Klinevo #SahabatBersihmu</h4>
+                    <h4 class="font-bold text-gray-100 text-4xl mb-4">Jadikan Klinevo #SahabatBersihmu</h4>
                     <a href="#" class="flex items-start max-w-fit rounded-full bg-transparent border border-white bg-white text-orange px-8 py-3 text-center text-sm font-medium outline-none transition duration-100 md:text-base mx-auto md:mx-0">Hubungi Kami</a>
                 </div>
             </div>
@@ -23,15 +23,23 @@
         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
             <div class="mb-16 grid grid-cols-2 gap-12 md:grid-cols-4 lg:grid-cols-6 lg:gap-8">
             <div class="col-span-full lg:col-span-2">
-                <!-- logo - start -->
-                <div class="mb-4 lg:-mt-2">
-                    <a href="/" class="inline-flex items-center gap-2 text-xl font-bold text-black md:text-2xl" aria-label="logo">
-                        <img src="<?php the_field('footer_logo', 'option'); ?>" aria-label="Logo Jogjaestate" class="img-fluid" height="34" >
-                    </a>
-                </div>
-                <!-- logo - end -->
-
-                <p class="mb-6 text-gray-500 sm:pr-8">Filler text is dummy text which has no meaning however looks very similar to real text</p>
+                <?php 
+                $footer_info = get_field('basic_footer_info', 'option');
+                if( $footer_info ): ?>
+                    <div class="pb-8 text-left text-sm text-gray-400">
+                        <?php if( $footer_info['basic_footer_logo'] ): ?>
+                            <div class="mb-4">
+                                <a href="/" class="inline-flex items-center gap-2 text-xl font-bold text-black md:text-2xl" aria-label="logo">
+                                    <img src="<?php echo esc_url($footer_info['basic_footer_logo']); ?>" aria-label="Logo Klinevo" class="img-fluid" height="34" >
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if( $footer_info['basic_footer_description'] ): ?>
+                            <p class="mb-6 text-gray-500 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_description']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
                 <!-- social - start -->
                 <div class="flex gap-4">
@@ -63,7 +71,38 @@
             </div>
 
 
-            
+            <div class="footer-social d-flex justify-content-center justify-content-lg-end">
+                        <?php
+                            // reset choices
+                            $field['choices'] = array();
+
+                            // if has rows
+                            if( have_rows('basic_social_media', 'option') ) {
+
+                                // while has rows
+                                while( have_rows('basic_social_media', 'option') ) {
+
+                                    // instantiate row
+                                    the_row();
+
+                                    // vars
+                                    $value = get_sub_field('basic_social_name');
+                                    $label = get_sub_field('basic_social_link');
+
+                                    // append to choices
+                                    $field['choices'][ $value ] = $label; ?>
+
+                                    <a href="<?php echo $label; ?>" target="_blank" rel="noopener" aria-label="Jogjaestate <?php echo $value; ?>" class="link <?php echo $value; ?>">
+                                        <i class="icon-ks-<?php echo $value; ?>"></i>
+                                    </a>
+
+                                <?php }
+                            }
+
+                            // return the field
+                            //return $field;
+                        ?>
+                    </div>
            
 
             </div>

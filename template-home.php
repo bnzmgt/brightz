@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-<div class="content-info font-sans">
+<div class="homepage font-sans">
     <?php if( have_rows('content_info') ): ?>
         <?php while ( have_rows('content_info') ) : the_row(); ?>
 
@@ -115,6 +115,7 @@ get_header(); ?>
                 <?php 
                 $service_main_image = get_sub_field('service_main_image');
                 $service_items = get_sub_field('service_item');
+                $service_link_page = get_sub_field('service_link_page');
                 if( $service_main_image || $service_items ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
@@ -152,7 +153,12 @@ get_header(); ?>
                                 </div>
                                 <?php endif; ?>
                             </div>
-                            <a href="#" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100  md:text-base">Temukan service lain</a>
+                            
+                            <?php if( $service_link_page ): ?>
+                                <div class="mt-8">
+                                    <a href="<?php echo esc_url($service_link_page['url']); ?>" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100 md:text-base"><?php echo esc_html($service_link_page['title']); ?></a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -162,6 +168,7 @@ get_header(); ?>
             <?php if( get_row_layout() == 'pricing' ): ?>
                 <?php 
                 $variants = get_sub_field('variant');
+                $variants_link_page = get_sub_field('variant_link_page');
                 if( $variants ): ?>
                     <div class="pricing-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
@@ -181,6 +188,11 @@ get_header(); ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
+                            <?php if( $variants_link_page ): ?>
+                                <div class="mt-8">
+                                    <a href="<?php echo esc_url($variants_link_page['url']); ?>" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100 md:text-base"><?php echo esc_html($variants_link_page['title']); ?></a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endif; ?>

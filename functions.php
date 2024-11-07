@@ -69,7 +69,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
         $classes = !empty($item->classes) ? implode(' ', $item->classes) : '';
         $output .= sprintf(
-            '<a href="%s" class="%s text-gray-800 hover:text-blue-600 px-4 py-2 transition duration-300">',
+            '<a href="%s" class="%s text-gray-800 hover:text-orange px-4 py-2 transition duration-300">',
             esc_url($item->url),
             esc_attr($classes)
         );
@@ -336,7 +336,7 @@ function my_theme_enqueue_styles() {
     // wp_enqueue_style('fontello', get_stylesheet_directory_uri() . '/asset/fontello/css/marker.css', array(), null,'all' );
 		wp_enqueue_style('themify', get_stylesheet_directory_uri() . '/asset/fonts/themify-icons.css', array(), null,'all' );
 		// wp_enqueue_style('logistico', get_stylesheet_directory_uri() . '/asset/css/vendor/logistico/main.css', array(), null,'all' );
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/output.css' );
+    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/main.css' );
 
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles', 60 );
@@ -356,43 +356,43 @@ function enqueue_load_bootstrap() {
 
     // Add popper js
     // wp_register_script( 'popper-js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', ['jquery'], NULL, true );
-     wp_register_script( 'popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['jquery'], NULL, true );
+    // wp_register_script( 'popper-js', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', ['jquery'], NULL, true );
     // wp_enqueue_script( 'popper-js' );
 
     // Add bootstrap js
-    wp_register_script( 'bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', ['jquery'], NULL, true );
+    // wp_register_script( 'bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', ['jquery'], NULL, true );
     //wp_register_script( 'bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', array('strategy' => 'defer'), ['jquery'], NULL, true );
-    wp_enqueue_script( 'bootstrap-js' );
+    // wp_enqueue_script( 'bootstrap-js' );
 }
 
 // Add integrity and cross origin attributes to the bootstrap css.
-function add_bootstrap_css_attributes( $html, $handle ) {
-    if ( $handle === 'bootstrap-css' ) {
-        return str_replace( '/>', 'integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />', $html );
-    }
-    return $html;
-}
-add_filter( 'style_loader_tag', 'add_bootstrap_css_attributes', 10, 2 );
+// function add_bootstrap_css_attributes( $html, $handle ) {
+//     if ( $handle === 'bootstrap-css' ) {
+//         return str_replace( '/>', 'integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />', $html );
+//     }
+//     return $html;
+// }
+// add_filter( 'style_loader_tag', 'add_bootstrap_css_attributes', 10, 2 );
 
 // Add integrity and cross origin attributes to the bootstrap script.
-function add_bootstrap_script_attributes( $html, $handle ) {
-    if ( $handle === 'bootstrap-js' ) {
-        return str_replace( '></script>', ' integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>', $html );
-    }
-    return $html;
-}
-add_filter('script_loader_tag', 'add_bootstrap_script_attributes', 10, 2);
+// function add_bootstrap_script_attributes( $html, $handle ) {
+//     if ( $handle === 'bootstrap-js' ) {
+//         return str_replace( '></script>', ' integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>', $html );
+//     }
+//     return $html;
+// }
+// add_filter('script_loader_tag', 'add_bootstrap_script_attributes', 10, 2);
 
 // Add integrity and cross origin attributes to the popper script.
-function add_popper_script_attributes( $html, $handle ) {
-    if ( $handle === 'popper-js' ) {
-        return str_replace( '></script>', ' integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>', $html );
-    }
-    return $html;
-}
-add_filter('script_loader_tag', 'add_popper_script_attributes', 10, 2);
+// function add_popper_script_attributes( $html, $handle ) {
+//     if ( $handle === 'popper-js' ) {
+//         return str_replace( '></script>', ' integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>', $html );
+//     }
+//     return $html;
+// }
+// add_filter('script_loader_tag', 'add_popper_script_attributes', 10, 2);
 
-add_action( 'wp_enqueue_scripts', 'enqueue_load_bootstrap' );
+// add_action( 'wp_enqueue_scripts', 'enqueue_load_bootstrap' );
 
 // -----------------------------------------------------------------------------
 // Google Fonts
@@ -552,5 +552,22 @@ function register_html_support() {
 }
 
 add_action( 'after_setup_theme', 'register_html_support' );
+
+// -----------------------------------------------------------------------------
+// Update Checker
+// -----------------------------------------------------------------------------
+require_once ( get_stylesheet_directory() . '/inc/plugin-update-checker/plugin-update-checker.php' );
+    $updateChecker = Puc_v4_Factory::buildUpdateChecker(
+        'https://github.com/bnzmgt/brightz',
+        __FILE__,
+        'brightz'
+    );
+
+    // $updateChecker->setAuthentication( array(
+    //     'consumer_key' => 'fgRqxkNVeWkCxpumeT',
+    //     'consumer_secret' => 'eJJTb6YYSGjVKZ6LszVgrGPejR79BKH8',
+    // ));
+
+    $updateChecker->setBranch( 'develop' );
 
 ?>
