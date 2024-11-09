@@ -3,7 +3,7 @@ Contributors: Qooick
 Tags: clean, simple, construction, landing page, HTML5, CSS3, company profile
 Requires at least: 4.8
 Stable tag: v1.0.1
-Version: 1.0.1
+Version: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,6 +12,10 @@ Brightz is a Wordpress Property Theme niche. All Qooick product adopt Easy to Us
 
 
 ### Changelog
+
+#### 1.0.2
+* dynamic data on footer
+* show whatsapp number
 
 #### 1.0.1
 * add read more link

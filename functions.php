@@ -83,6 +83,23 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 }
 
+function add_whatsapp_link_to_menu($items, $args) {
+    // Check if ACF is active and the WhatsApp number field exists
+    if (function_exists('get_field') && $whatsapp_number = get_field('basic_whatsapp_number', 'option')) {
+        // Define the WhatsApp URL
+        $whatsapp_url = 'https://api.whatsapp.com/send?phone=' . $whatsapp_number;
+        
+        // Loop through each menu item to replace the WhatsApp link placeholder
+        foreach ($items as $item) {
+            if ($item->url === '#') { // Check for the placeholder URL
+                $item->url = esc_url($whatsapp_url); // Update to WhatsApp link
+                $item->target = '_blank'; // Open link in new tab
+            }
+        }
+    }
+    return $items;
+}
+add_filter('wp_nav_menu_objects', 'add_whatsapp_link_to_menu', 10, 2);
 
 
 
@@ -163,27 +180,6 @@ if( function_exists('acf_add_options_page') ) {
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Theme Header Settings',
 		'menu_title'	=> 'Header',
-		'parent_slug'	=> 'theme-general-settings',
-	));
-
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Theme Footer Settings',
-		'menu_title'	=> 'Footer',
-		'parent_slug'	=> 'theme-general-settings',
-  	));
-
-  	acf_add_options_page(array(
-		'page_title' 	=> 'Address Info',
-		'menu_title'	=> 'Address Info',
-		'menu_slug' 	=> 'address-info',
-		'capability'	=> 'edit_posts',
-    	'icon_url' 		=> 'dashicons-feedback',
-    	'parent_slug' 	=> 'theme-general-settings',
-		'redirect'		=> false
-	));
-    acf_add_options_sub_page(array(
-		'page_title' 	=> 'Event',
-		'menu_title'	=> 'Event',
 		'parent_slug'	=> 'theme-general-settings',
 	));
 }

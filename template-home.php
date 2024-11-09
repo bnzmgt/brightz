@@ -9,7 +9,6 @@ get_header(); ?>
     <?php if( have_rows('content_info') ): ?>
         <?php while ( have_rows('content_info') ) : the_row(); ?>
 
-            <!-- Hero Layout -->
             <?php if( get_row_layout() == 'hero' ): ?>
                 <?php 
                     $hero_items = get_sub_field('hero_item');
@@ -62,7 +61,7 @@ get_header(); ?>
                                         <?php foreach( $hero_schedule as $schedule ): ?>
                                             <div class="flex items-start gap-4 md:w-1/3">
                                                 <?php if( $schedule['sch_image'] ): ?>
-                                                    <img src="<?php echo esc_url($schedule['sch_image']); ?>" alt="Schedule Image" class="w-[46px] h-[46px] object-cover">
+                                                    <img src="<?php echo esc_url($schedule['sch_image']); ?>" alt="Schedule Image" class="w-7 md:w-[46px] h-7 md:h-[46px] object-cover">
                                                 <?php endif; ?>
                                                 <div>
                                                     <?php if( $schedule['sch_title'] ): ?>
@@ -84,8 +83,6 @@ get_header(); ?>
                 <?php endif; ?>
             <?php endif; ?>
 
-
-            <!-- About Us Layout -->
             <?php if( get_row_layout() == 'aboutus' ): ?>
                 <?php 
                 $about_heading_title = get_sub_field('about_heading_title');
@@ -110,7 +107,6 @@ get_header(); ?>
                 <?php endif; ?>
             <?php endif; ?>
 
-            <!-- Services Layout -->
             <?php if( get_row_layout() == 'services' ): ?>
                 <?php 
                 $service_main_image = get_sub_field('service_main_image');
@@ -164,7 +160,6 @@ get_header(); ?>
                 <?php endif; ?>
             <?php endif; ?>
 
-            <!-- Pricing Layout -->
             <?php if( get_row_layout() == 'pricing' ): ?>
                 <?php 
                 $variants = get_sub_field('variant');
@@ -198,7 +193,6 @@ get_header(); ?>
                 <?php endif; ?>
             <?php endif; ?>
 
-            <!-- Testimonial Layout -->
             <?php if( get_row_layout() == 'testimonial' ): ?>
                 <?php 
                 $testimonials = get_sub_field('testimonials');
