@@ -37,7 +37,10 @@
                             <?php endif; ?>
                             
                             <?php if( $footer_info['basic_footer_description'] ): ?>
-                                <p class="mb-6 text-gray-500 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_description']); ?></p>
+                                <p class="mb-6 text-gray-400 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_description']); ?></p>
+                            <?php endif; ?>
+                            <?php if( $footer_info['basic_footer_address'] ): ?>
+                                <p class="text-gray-400 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_address']); ?></p>
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>

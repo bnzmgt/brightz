@@ -38,16 +38,31 @@ get_header(); ?>
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
                             <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-16 lg:text-3xl">Our Pricing</h2>
                             <div class="grid gap-6 md:grid-cols-3 lg:gap-6">
-                                <?php foreach( $variants as $variant ): ?>
+                            <?php foreach( $variants as $index => $variant ): ?>
                                     <div class="pricing-variant shadow-md text-center">
                                         <?php if( $variant['pricing_type'] ): ?>
                                             <h4 class="py-8 text-center font-light text-lg bg-blue-light text-white"><?php echo esc_html($variant['pricing_type']); ?></h4>
                                         <?php endif; ?>
                                         <?php if( $variant['pricing_number'] ): ?>
-                                            <p class="text-3xl font-normal p-4 md:p-8"><?php echo esc_html($variant['pricing_number']); ?></p>
+                                            <p class="text-3xl font-normal p-4 md:p-8">Rp. <?php echo esc_html($variant['pricing_number']); ?></p>
+                                        <?php endif; ?>
+                                        <?php if( $variant['pricing_excerpt'] ): ?>
+                                            <div class="pb-10 px-4 md:px-10 content-info"><?php echo $variant['pricing_excerpt']; ?></div>
                                         <?php endif; ?>
                                         <?php if( $variant['pricing_description'] ): ?>
-                                            <div class="pb-10 px-4 md:px-8"><?php echo $variant['pricing_description']; ?></div>
+                                            <!-- Add Fancybox Trigger -->
+                                            <div class="pb-10 px-4 md:px-8">
+                                                <a href="#modal-description-<?php echo $index; ?>" data-fancybox class="inline-block text-blue-light px-6 py-2 text-center text-sm font-medium transition duration-100 md:text-base">
+                                                    Selengkapnya
+                                                </a>
+                                                <!-- Fancybox Modal Content -->
+                                                <div style="display: none;" id="modal-description-<?php echo $index; ?>">
+                                                    <div class="p-4">
+                                                        <h3 class="mb-4 text-xl font-bold"><?php echo esc_html($variant['pricing_type']); ?></h3>
+                                                        <p><?php echo $variant['pricing_description']; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>

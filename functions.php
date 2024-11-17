@@ -11,6 +11,7 @@ function get_acf_options() {
     if (function_exists('get_field')) {
         $footer_logo = get_field('footer_logo', 'option');
         $social_media = get_field('basic_social_media', 'option');
+        $footer_info = get_field('basic_footer_info', 'option');
 
         // Format social_media repeater field for the API response
         $formatted_social_media = [];
@@ -30,7 +31,7 @@ function get_acf_options() {
                                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                                 </svg>';
                     $icon = 'data:image/svg+xml;base64,' . base64_encode($icon_svg);
-                }elseif ($name === 'facebook') {
+                } elseif ($name === 'facebook') {
                     $icon_svg = '<svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                                 </svg>';
@@ -45,12 +46,37 @@ function get_acf_options() {
             }
         }
 
+        // Format basic_footer_info fields
+        $formatted_footer_info = [];
+        // if (is_array($footer_info)) {
+        //     $formatted_footer_info = [
+        //         'logo' => isset($footer_info['basic_footer_logo']) ? $footer_info['basic_footer_logo']['url'] : '',
+        //         'description' => isset($footer_info['basic_footer_description']) ? $footer_info['basic_footer_description'] : ''
+        //     ];
+        // }
+
+        // if (is_array($footer_info)) {
+        //     $formatted_footer_info = [
+        //         'logo' => !empty($footer_info['basic_footer_logo']) && is_array($footer_info['basic_footer_logo']) ? $footer_info['basic_footer_logo']['url'] : '',
+        //         'description' => !empty($footer_info['basic_footer_description']) ? $footer_info['basic_footer_description'] : ''
+        //     ];
+        // }
+
+        if (!empty($footer_info) && is_array($footer_info)) {
+            $formatted_footer_info = [
+                'logo' => !empty($footer_info['basic_footer_logo']) ? $footer_info['basic_footer_logo'] : '',
+                'description' => $footer_info['basic_footer_description'] ?? ''
+            ];
+        }
+
         $options = array(
             'footer_copyright' => get_field('basic_copyright_text', 'option'),
             'whatsapp_number' => get_field('basic_whatsapp_number', 'option'),
+            'basic_phone' => get_field('basic_phone', 'option'),
             'footer_logo' => is_array($footer_logo) ? $footer_logo['url'] : $footer_logo,
             'basic_social_media' => $formatted_social_media,
-            'basic_contact' => get_field('basic_contact', 'option')
+            'basic_contact' => get_field('basic_contact', 'option'),
+            'basic_footer_info' => $formatted_footer_info
         );
         return $options;
     }
