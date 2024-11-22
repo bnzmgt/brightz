@@ -24,7 +24,7 @@
 
 <div class="navbar navbar-light bg-light navbar-expand-lg" role="navigation">
     <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-        <header class="flex items-center justify-between py-4 md:py-8">
+        <header class="flex items-center justify-between py-4 md:py-8 relative">
         
             <div class="logo-top">
                 <?php if ( wp_is_mobile() ) : ?>
@@ -42,26 +42,27 @@
                         <?php endif; ?>
                 <?php endif; ?>
             </div>
-
+            <div class="menu-container hidden lg:flex gap-8 items-center">
             <?php
                 wp_nav_menu( array(
                     'theme_location'    => 'primary',
                     'depth'             => 1, // Set to 1 if you don’t need sub-menus
                     'container'         => 'nav',
-                    'container_class'   => 'hidden lg:flex gap-8 items-center',
+                    //'container_class'   => 'hidden lg:flex gap-8 items-center',
+                    'container_class'   => false,
                     //'menu_class'        => 'flex flex-wrap space-x-4',
                     'items_wrap'        => '%3$s',
                     'fallback_cb'       => false,
                     'walker'            => new Custom_Walker_Nav_Menu(),
                 ));
             ?>
+            </div>
 
-            <button type="button" class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-            </svg>
-
-            Menu
+            <button id="menu-toggle" type="button" class="z-[1] inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+                Menu
             </button>
         
         </header>

@@ -622,6 +622,10 @@ video {
   left: 50%;
 }
 
+.z-\[1\]{
+  z-index: 1;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -1302,18 +1306,6 @@ video {
   background-color: #E2E2DF;
 }
 
-@media (min-width: 768px) {
-  .homepage .pricing-section .pricing-variant:nth-of-type(2){
-    z-index: 1;
-    margin-left: -2.5rem;
-    margin-right: -2.5rem;
-    margin-top: -2rem;
-    width: auto;
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-  }
-}
-
 .homepage .pricing-section .pricing-variant:nth-of-type(2) h4 {
   background-color: #27AAE1;
 }
@@ -1403,6 +1395,44 @@ video {
         line-height: 1.5rem;
       }
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage .pricing-section .pricing-variant:nth-of-type(2){
+    z-index: 1;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    margin-top: -2rem;
+    width: auto;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  }
+}
+
+@media (max-width: 992px) {
+  .menu-top-menu-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    gap: 24px;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #fff;
+    z-index: 1;
+    margin: 0 -32px;
   }
 }
 
@@ -1559,6 +1589,10 @@ video {
     width: 46px;
   }
 
+  .md\:w-\[80\%\]{
+    width: 80%;
+  }
+
   .md\:translate-x-0{
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1568,8 +1602,16 @@ video {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-2{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row{
     flex-direction: row;
+  }
+
+  .md\:justify-end{
+    justify-content: flex-end;
   }
 
   .md\:justify-between{
@@ -1596,6 +1638,11 @@ video {
     padding: 2rem;
   }
 
+  .md\:px-10{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .md\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
@@ -1604,11 +1651,6 @@ video {
   .md\:py-8{
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-
-  .md\:px-10{
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 
   .md\:text-left{

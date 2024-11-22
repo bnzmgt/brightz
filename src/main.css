@@ -51,11 +51,7 @@
     background-color: #E2E2DF;
 }
 
-@media (min-width: 768px) {
-    .homepage .pricing-section .pricing-variant:nth-of-type(2) {
-        @apply -mt-8 -mx-10 z-[1] bg-white w-auto;
-    }
-}
+
 
 
 .homepage .pricing-section .pricing-variant:nth-of-type(2) h4 {
@@ -105,5 +101,44 @@
                 @apply text-base;
             }
         }
+    }
+}
+
+@media (min-width: 768px) {
+    .homepage .pricing-section .pricing-variant:nth-of-type(2) {
+        @apply -mt-8 -mx-10 z-[1] bg-white w-auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .menu-top-menu-container {
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        gap: 24px;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        background-color: #fff;
+        z-index: 1;
+        margin: 0 -32px;
     }
 }

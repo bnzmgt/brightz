@@ -22,12 +22,12 @@
 
     <div class="pt-12 lg:pt-16">
         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-            <div class="mb-8 grid grid-cols-2 gap-12">
-                <div class="footer-infoz ">
+            <div class="mb-8 grid md:grid-cols-2 gap-12">
+                <div class="footer-infoz">
                     <?php 
                     $footer_info = get_field('basic_footer_info', 'option');
                     if( $footer_info ): ?>
-                        <div class="text-left text-sm text-gray-400 w-[80%]">
+                        <div class="text-center md:text-left text-sm text-gray-400 w-full md:w-[80%]">
                             <?php if( $footer_info['basic_footer_logo'] ): ?>
                                 <div class="mb-4">
                                     <a href="/" class="inline-flex items-center gap-2 text-xl font-bold text-black md:text-2xl" aria-label="logo">
@@ -46,7 +46,7 @@
                     <?php endif; ?>
                 </div>
 
-                <div class="footer-social flex justify-end items-end mb-6">
+                <div class="footer-social flex justify-center md:justify-end items-end mb-6">
                     <?php
                         // reset choices
                         $field['choices'] = array();
@@ -80,10 +80,18 @@
                 </div>
             </div>
 
-            <div class="border-t py-8 text-left text-sm text-gray-400"><?php the_field('basic_copyright_text', 'option'); ?></div>
+            <div class="border-t py-8 text-center md:text-left text-sm text-gray-400"><?php the_field('basic_copyright_text', 'option'); ?></div>
         </div>
     </div>
 </footer>
+
+<script>
+jQuery(document).ready(function($) {
+    $('#menu-toggle').on('click', function() {
+        $('.menu-container').toggleClass('hidden flex navbar-collapse');
+    });
+});
+</script>
 
 <?php wp_footer(); ?>
 

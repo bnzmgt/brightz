@@ -1,3 +1,6 @@
+## 22 November 2024 - v1.0.4 ##
+* fix menu on mobile
+
 ## 17 November 2024 - v1.0.3 ##
 * dynamic pricing section and page
 

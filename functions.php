@@ -1,4 +1,7 @@
 <?php
+add_filter('acf/rest_api/fetch_item', function ($data, $request) {
+    return $data;
+}, 10, 2);
 
 add_action('rest_api_init', function() {
     register_rest_route('custom/v1', '/acf-options/', array(
