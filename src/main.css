@@ -51,9 +51,6 @@
     background-color: #E2E2DF;
 }
 
-
-
-
 .homepage .pricing-section .pricing-variant:nth-of-type(2) h4 {
     background-color: #27AAE1;
 }
@@ -107,6 +104,12 @@
 @media (min-width: 768px) {
     .homepage .pricing-section .pricing-variant:nth-of-type(2) {
         @apply -mt-8 -mx-10 z-[1] bg-white w-auto;
+    }
+
+    .menu-top-menu-container {
+        .contact {
+            @apply ml-5;
+        }
     }
 }
 

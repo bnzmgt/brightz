@@ -3,7 +3,7 @@ Contributors: Qooick
 Tags: clean, simple, construction, landing page, HTML5, CSS3, company profile  
 Requires at least: 4.8  
 Stable tag: v1.0.1
-Version: 1.0.4
+Version: 1.0.5
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -11,6 +11,13 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Brightz is a Single Page Company Profile Theme niche. All Qooick product adopt Easy to Use method (ESTU) for company or personal user and will user-friendly for visitor.
 
 ### Changelog
+
+#### 1.0.5
+* adjust footer layout and content
+* adjust pricing template
+* adjust service template
+* adjust homepage
+* add minor fix
 
 #### 1.0.4
 * fix menu on mobile

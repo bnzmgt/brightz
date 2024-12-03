@@ -1,3 +1,10 @@
+## 03 December 2024 - v1.0.5 ##
+* adjust footer layout and content
+* adjust pricing template
+* adjust service template
+* adjust homepage
+* add minor fix
+
 ## 22 November 2024 - v1.0.4 ##
 * fix menu on mobile
 

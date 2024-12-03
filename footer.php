@@ -23,7 +23,7 @@
     <div class="pt-12 lg:pt-16">
         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
             <div class="mb-8 grid md:grid-cols-2 gap-12">
-                <div class="footer-infoz">
+                <div class="footer-info">
                     <?php 
                     $footer_info = get_field('basic_footer_info', 'option');
                     if( $footer_info ): ?>
@@ -39,44 +39,61 @@
                             <?php if( $footer_info['basic_footer_description'] ): ?>
                                 <p class="mb-6 text-gray-400 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_description']); ?></p>
                             <?php endif; ?>
-                            <?php if( $footer_info['basic_footer_address'] ): ?>
-                                <p class="text-gray-400 sm:pr-8"><?php echo esc_html($footer_info['basic_footer_address']); ?></p>
-                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
+
+                    <div class="footer-social flex justify-center md:justify-start mt-6 items-end">
+                        <?php
+                            // reset choices
+                            $field['choices'] = array();
+
+                            // if has rows
+                            if( have_rows('basic_social_media', 'option') ) {
+
+                                // while has rows
+                                while( have_rows('basic_social_media', 'option') ) {
+
+                                    // instantiate row
+                                    the_row();
+
+                                    // vars
+                                    $value = get_sub_field('basic_social_name');
+                                    $label = get_sub_field('basic_social_link');
+
+                                    // append to choices
+                                    $field['choices'][ $value ] = $label; ?>
+
+                                    <a href="<?php echo $label; ?>" target="_blank" rel="noopener" aria-label="Jogjaestate <?php echo $value; ?>" class="link <?php echo $value; ?>">
+                                        <i class="icon-ks-<?php echo $value; ?>"></i>
+                                    </a>
+
+                                <?php }
+                            }
+
+                            // return the field
+                            //return $field;
+                        ?>
+                    </div>
                 </div>
 
-                <div class="footer-social flex justify-center md:justify-end items-end mb-6">
-                    <?php
-                        // reset choices
-                        $field['choices'] = array();
+                <div class="footer-link flex flex-col md:flex-row gap-8 md:gap-0">
 
-                        // if has rows
-                        if( have_rows('basic_social_media', 'option') ) {
-
-                            // while has rows
-                            while( have_rows('basic_social_media', 'option') ) {
-
-                                // instantiate row
-                                the_row();
-
-                                // vars
-                                $value = get_sub_field('basic_social_name');
-                                $label = get_sub_field('basic_social_link');
-
-                                // append to choices
-                                $field['choices'][ $value ] = $label; ?>
-
-                                <a href="<?php echo $label; ?>" target="_blank" rel="noopener" aria-label="Jogjaestate <?php echo $value; ?>" class="link <?php echo $value; ?>">
-                                    <i class="icon-ks-<?php echo $value; ?>"></i>
-                                </a>
-
-                            <?php }
-                        }
-
-                        // return the field
-                        //return $field;
+                    <?php 
+                        $footer_info = get_field('basic_footer_info', 'option');
+                        if( $footer_info ): ?>
+                            <div class="text-center md:text-left text-sm text-gray-400 w-full">
+                                <?php if( $footer_info['basic_footer_links'] ): ?>
+                                    <div class="text-gray-400 sm:pr-8"><?php echo wp_kses_post($footer_info['basic_footer_links']); ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="text-center md:text-left text-sm text-gray-400 w-full">
+                                <?php if( $footer_info['basic_footer_address'] ): ?>
+                                    <div class="text-gray-400"><?php echo wp_kses_post($footer_info['basic_footer_address']); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; 
                     ?>
+
                 </div>
             </div>
 

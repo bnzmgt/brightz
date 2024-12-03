@@ -33,10 +33,13 @@ get_header(); ?>
                 <?php 
                 $service_main_image = get_sub_field('service_main_image');
                 $service_items = get_sub_field('service_item');
+                $service_section_title = get_sub_field('service_section_title');
                 if( $service_main_image || $service_items ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Our Services</h2>
+                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
+                                <?php echo esc_html($service_section_title); ?>
+                            </h2>
                             <div class="grid gap-8 <?php echo $service_main_image ? 'lg:grid-cols-2 lg:gap-12' : 'lg:grid-cols-1'; ?>">
                                 
                                 <?php if( $service_main_image ): ?>

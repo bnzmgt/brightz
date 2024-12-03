@@ -309,7 +309,7 @@ function my_acf_admin_head() {
     <style type="text/css">
 
         .postbox-container .meta-box-sortables .postbox {
-            width: 50%;
+            width: 80%;
             margin: 0 auto;
         }
 

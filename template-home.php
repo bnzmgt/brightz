@@ -112,10 +112,13 @@ get_header(); ?>
                 $service_main_image = get_sub_field('service_main_image');
                 $service_items = get_sub_field('service_item');
                 $service_link_page = get_sub_field('service_link_page');
+                $service_section_title = get_sub_field('service_section_title');
                 if( $service_main_image || $service_items ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Our Services</h2>
+                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
+                                <?php echo esc_html($service_section_title); ?>
+                            </h2>
                             <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
                                 <div>
                                     <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
@@ -161,65 +164,70 @@ get_header(); ?>
             <?php endif; ?>
 
             <?php if( get_row_layout() == 'pricing' ): ?>
-    <?php 
-    $variants = get_sub_field('variant');
-    $variants_link_page = get_sub_field('variant_link_page');
-    if( $variants ): ?>
-        <div class="pricing-section bg-white py-6 sm:py-8 lg:py-20">
-            <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-                <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-16 lg:text-3xl">Our Pricing</h2>
-                <div class="grid gap-6 md:grid-cols-3 lg:gap-6">                                
-                    <?php foreach( $variants as $index => $variant ): ?>
-                        <div class="pricing-variant mx-auto max-w-screen-xl w-full text-center">
-                            <div class="shadow-md">
-                                <?php if( $variant['pricing_type'] ): ?>
-                                    <h4 class="py-8 text-center font-medium text-lg"><?php echo esc_html($variant['pricing_type']); ?></h4>
-                                <?php endif; ?>
-                                <?php if( $variant['pricing_number'] ): ?>
-                                    <p class="text-3xl font-normal p-4 md:p-8">Rp. <?php echo esc_html($variant['pricing_number']); ?></p>
-                                <?php endif; ?>
-                                <?php if( $variant['pricing_excerpt'] ): ?>
-                                    <div class="pb-10 px-4 md:px-10 content-info"><?php echo $variant['pricing_excerpt']; ?></div>
-                                <?php endif; ?>
-                                <?php if( $variant['pricing_description'] ): ?>
-                                    <!-- Add Fancybox Trigger -->
-                                    <div class="pb-10 px-4 md:px-8">
-                                        <a href="#modal-description-<?php echo $index; ?>" data-fancybox class="inline-block text-blue-light px-6 py-2 text-center text-sm font-medium transition duration-100 md:text-base">
-                                            Selengkapnya
-                                        </a>
-                                        <!-- Fancybox Modal Content -->
-                                        <div style="display: none;" id="modal-description-<?php echo $index; ?>">
-                                            <div class="p-4">
-                                                <h3 class="mb-4 text-xl font-bold"><?php echo esc_html($variant['pricing_type']); ?></h3>
-                                                <p><?php echo $variant['pricing_description']; ?></p>
-                                            </div>
+                <?php 
+                $variants = get_sub_field('variant');
+                $variants_link_page = get_sub_field('variant_link_page');
+                $pricing_section_title = get_sub_field('pricing_section_title');
+                if( $variants ): ?>
+                    <div class="pricing-section bg-white py-6 sm:py-8 lg:py-20">
+                        <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-16 lg:text-3xl">
+                                <?php echo esc_html($pricing_section_title); ?>
+                            </h2>
+                            <div class="grid gap-6 md:grid-cols-3 lg:gap-6">                                
+                                <?php foreach( $variants as $index => $variant ): ?>
+                                    <div class="pricing-variant mx-auto max-w-screen-xl w-full text-center">
+                                        <div class="shadow-md">
+                                            <?php if( $variant['pricing_type'] ): ?>
+                                                <h4 class="py-8 text-center font-medium text-lg"><?php echo esc_html($variant['pricing_type']); ?></h4>
+                                            <?php endif; ?>
+                                            <?php if( $variant['pricing_number'] ): ?>
+                                                <p class="text-3xl font-normal p-4 md:p-8">Rp. <?php echo esc_html($variant['pricing_number']); ?></p>
+                                            <?php endif; ?>
+                                            <?php if( $variant['pricing_excerpt'] ): ?>
+                                                <div class="pb-10 px-4 md:px-10 content-info"><?php echo $variant['pricing_excerpt']; ?></div>
+                                            <?php endif; ?>
+                                            <?php if( $variant['pricing_description'] ): ?>
+                                                <!-- Add Fancybox Trigger -->
+                                                <div class="pb-10 px-4 md:px-8">
+                                                    <a href="#modal-description-<?php echo $index; ?>" data-fancybox class="inline-block text-blue-light px-6 py-2 text-center text-sm font-medium transition duration-100 md:text-base">
+                                                        Selengkapnya
+                                                    </a>
+                                                    <!-- Fancybox Modal Content -->
+                                                    <div style="display: none;" id="modal-description-<?php echo $index; ?>">
+                                                        <div class="p-4">
+                                                            <h3 class="mb-4 text-xl font-bold"><?php echo esc_html($variant['pricing_type']); ?></h3>
+                                                            <p><?php echo $variant['pricing_description']; ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
-                                <?php endif; ?>
+                                <?php endforeach; ?>                                
                             </div>
+                            <?php if( $variants_link_page ): ?>
+                                <div class="mt-8">
+                                    <a href="<?php echo esc_url($variants_link_page['url']); ?>" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100 md:text-base">
+                                        <?php echo esc_html($variants_link_page['title']); ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    <?php endforeach; ?>                                
-                </div>
-                <?php if( $variants_link_page ): ?>
-                    <div class="mt-8">
-                        <a href="<?php echo esc_url($variants_link_page['url']); ?>" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100 md:text-base">
-                            <?php echo esc_html($variants_link_page['title']); ?>
-                        </a>
                     </div>
                 <?php endif; ?>
-            </div>
-        </div>
-    <?php endif; ?>
-<?php endif; ?>
-
+            <?php endif; ?>
 
             <?php if( get_row_layout() == 'testimonial' ): ?>
                 <?php 
                 $testimonials = get_sub_field('testimonials');
+                $testimonial_section_title = get_sub_field('testimonial_section_title');
                 if( $testimonials ): ?>
                     <div class="testimonial-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">What others say about us</h2>
+                            <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
+                                <?php echo esc_html($testimonial_section_title); ?>
+                            </h2>
                             <div class="grid gap-y-10 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 lg:divide-x">
                                 <?php foreach( $testimonials as $testimonial ): ?>
                                     <div class="flex flex-col items-center gap-4 sm:px-4 md:gap-6 lg:px-8">
@@ -236,7 +244,7 @@ get_header(); ?>
 
                                             <div>
                                                 <?php if( $testimonial['testimonial_name'] ): ?>
-                                                    <h5 class="text-center text-sm font-bold text-indigo-500 sm:text-left md:text-base"><?php echo esc_html($testimonial['testimonial_name']); ?></h5>
+                                                    <h5 class="text-center text-sm font-bold text-primary sm:text-left md:text-base"><?php echo esc_html($testimonial['testimonial_name']); ?></h5>
                                                 <?php endif; ?>
                                                 <?php if( $testimonial['testimonial_position'] ): ?>
                                                     <p class="text-center text-sm text-gray-500 sm:text-left md:text-sm"><?php echo esc_html($testimonial['testimonial_position']); ?></p>
