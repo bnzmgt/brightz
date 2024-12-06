@@ -1,3 +1,8 @@
+## 06 December 2024 - v1.0.6 ##
+* dynamic google fonts
+* adjust pricing template
+* minor fix
+
 ## 03 December 2024 - v1.0.5 ##
 * adjust footer layout and content
 * adjust pricing template
