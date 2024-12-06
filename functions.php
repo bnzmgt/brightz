@@ -147,6 +147,21 @@ function custombodyclass($classes){
 		return $classes;
 }
 
+// add_filter('body_class', 'custom_body_class');
+// function custom_body_class($classes) {
+//     // Add 'mainpage' class if it's the home or front page
+//     if (is_home() || is_front_page()) {
+//         $classes[] = 'mainpage';
+//     }
+
+//     // Add 'dynamic-font' class based on a condition (e.g., a theme option or ACF field)
+//     if (get_field('google_font_choice', 'option')) { // Replace with your condition
+//         $classes[] = 'dynamic-font';
+//     }
+
+//     return $classes;
+// }
+
 // Filter except length to 35 words.
 // tn custom excerpt length
 function tn_custom_excerpt_length( $length ) {
@@ -422,10 +437,53 @@ function enqueue_load_bootstrap() {
 // -----------------------------------------------------------------------------
 // Google Fonts
 // -----------------------------------------------------------------------------
-function custom_add_google_fonts() {
-		wp_enqueue_style( 'custom-google-fonts', 'https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap', false );
+function enqueue_selected_google_font() {
+    $font_choice = get_field('google_font_choice', 'option'); // Use 'option' for global settings.
+
+    if ($font_choice) {
+        $font_name = str_replace(' ', '+', $font_choice);
+        wp_enqueue_style('google-font-' . $font_name, "https://fonts.googleapis.com/css2?family={$font_name}:wght@100;200;300;400;500;600;700;800;900&display=swap");
+    }
 }
-add_action( 'wp_enqueue_scripts', 'custom_add_google_fonts' );
+add_action('wp_enqueue_scripts', 'enqueue_selected_google_font');
+
+add_filter('acf/load_field/name=google_font_choice', 'load_google_fonts');
+function load_google_fonts($field) {
+    // Define your Google Fonts
+    $google_fonts = [
+        'Roboto' => 'Roboto',
+        'Open Sans' => 'Open Sans',
+        'Outfit' => 'Outfit',
+        'Lato' => 'Lato',
+        'Montserrat' => 'Montserrat',
+        'Poppins' => 'Poppins',
+    ];
+
+    // Set the choices for the select field
+    $field['choices'] = $google_fonts;
+
+    return $field;
+}
+
+function add_font_inline_styles() {
+    $font_choice = get_field('google_font_choice', 'option');
+
+    if ($font_choice) {
+        echo "
+        <style>
+            body,
+            html,
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
+                font-family: '{$font_choice}', sans-serif;
+            }
+        </style>";
+    }
+}
+add_action('wp_head', 'add_font_inline_styles');
 
 function custom_excerpt_length($text) {
     return wp_trim_words($text, 30, '...'); // Adjust the word limit if necessary
@@ -508,23 +566,23 @@ add_action('wp_head', 'remove_header');
 // -----------------------------------------------------------------------------
 if ( ! function_exists( 'breadcrumbs' ) ) :
 function breadcrumbs() {
-$delimiter = '&rsaquo;';
-$home = 'Home';
+    $delimiter = '&rsaquo;';
+    $home = 'Home';
 
-echo '<div xmlns:v="http://rdf.data-vocabulary.org/#">';
-global $post;
-echo ' <span typeof="v:Breadcrumb">
-<a rel="v:url" property="v:title" href="'.home_url( '/' ).'">'.$home.'</a>
-</span> ';
-$cats = get_the_category();
-if ($cats) {
-foreach($cats as $cat) {
-echo $delimiter . "<span typeof=\"v:Breadcrumb\">
-<a rel=\"v:url\" property=\"v:title\" href=\"".get_category_link($cat->term_id)."\" >$cat->name</a>
-</span>"; }
-}
-echo $delimiter . the_title(' <span>', '</span>', false);
-echo '</div>';
+    echo '<div xmlns:v="http://rdf.data-vocabulary.org/#">';
+    global $post;
+    echo ' <span typeof="v:Breadcrumb">
+    <a rel="v:url" property="v:title" href="'.home_url( '/' ).'">'.$home.'</a>
+    </span> ';
+    $cats = get_the_category();
+    if ($cats) {
+        foreach($cats as $cat) {
+        echo $delimiter . "<span typeof=\"v:Breadcrumb\">
+        <a rel=\"v:url\" property=\"v:title\" href=\"".get_category_link($cat->term_id)."\" >$cat->name</a>
+        </span>"; }
+    }
+    echo $delimiter . the_title(' <span>', '</span>', false);
+    echo '</div>';
 }
 endif;
 
