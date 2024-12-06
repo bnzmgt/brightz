@@ -42,9 +42,9 @@ get_header(); ?>
                                         <!-- Hero Item Content - end -->
 
                                         <!-- Hero Item Image - start -->
-                                        <div class="h-auto overflow-hidden  xl:w-5/6">
+                                        <div class="flex justify-center h-auto overflow-hidden xl:w-5/6">
                                             <?php if( $hero_item['hero_image'] ): ?>
-                                                <img src="<?php echo esc_url($hero_item['hero_image']); ?>" alt="Hero Image" class="h-full w-full object-cover object-center" />
+                                                <img src="<?php echo esc_url($hero_item['hero_image']); ?>" alt="Hero Image" class="h-full object-cover object-center" />
                                             <?php endif; ?>
                                         </div>
                                         <!-- Hero Item Image - end -->
@@ -232,7 +232,7 @@ get_header(); ?>
                                 <?php foreach( $testimonials as $testimonial ): ?>
                                     <div class="flex flex-col items-center gap-4 sm:px-4 md:gap-6 lg:px-8">
                                         <?php if( $testimonial['testimonial_content'] ): ?>
-                                            <div class="text-center text-gray-600"><?php echo esc_html($testimonial['testimonial_content']); ?></div>
+                                            <div class="text-center text-gray-600"><p><?php echo esc_html($testimonial['testimonial_content']); ?></p></div>
                                         <?php endif; ?>
 
                                         <div class="flex flex-col items-center gap-2 sm:flex-row md:gap-3">

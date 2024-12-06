@@ -37,14 +37,19 @@ get_header(); ?>
                 $show_booking_button = get_sub_field('show_booking', 'option'); // Toggle for Booking Button
                 $show_pricing_description = get_sub_field('show_description', 'option'); // Toggle for Description
                 $whatsapp_number = get_field('basic_whatsapp_number', 'option'); // WhatsApp number
-                $booking_message = 'Hallo, saya ingin tahu lebih lanjut tentang Klinevo'; // Default booking message
+                //$booking_message = 'Hallo, saya ingin tahu lebih lanjut tentang Klinevo'; // Default booking message
                 
                 if( $variants ): ?>
                     <div class="pricing-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="mx-auto max-w-screen-xl px-4 md:px-8">
                             <!-- Main Price Section -->
                             <div class="main-price max-w-screen-md mx-auto mb-12">
-                                <?php foreach( $variants as $variant ): ?>
+                                <?php foreach( $variants as $index => $variant ): ?>
+                                    <?php 
+                                        // Construct the dynamic booking message
+                                        $pricing_type = $variant['pricing_type'];
+                                        $booking_message = 'Hallo, saya ingin tahu lebih lanjut tentang Paket ' . esc_html($pricing_type); 
+                                    ?>
                                     <?php if( isset($variant['highlight_main_price']) && $variant['highlight_main_price'] ): ?>
                                         <div class="pricing-variant rounded-lg border hover:shadow-md text-center p-6">
                                             <div class="flex flex-col md:flex-row">
@@ -118,6 +123,11 @@ get_header(); ?>
                                     if( isset($variant['highlight_main_price']) && $variant['highlight_main_price'] ) {
                                         continue;
                                     }
+                                    ?>
+                                    <?php 
+                                        // Construct the dynamic booking message
+                                        $pricing_type = $variant['pricing_type'];
+                                        $booking_message = 'Hallo, saya ingin tahu lebih lanjut tentang ' . esc_html($pricing_type); 
                                     ?>
                                     <div class="pricing-variant rounded-lg border hover:shadow-md text-center overflow-auto">
                                         <?php if( $variant['pricing_type'] ): ?>
