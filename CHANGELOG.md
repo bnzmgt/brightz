@@ -1,3 +1,6 @@
+## 18 December 2024 - v1.0.7 ##
+* create alternative pricing template
+
 ## 06 December 2024 - v1.0.6 ##
 * dynamic google fonts
 * adjust pricing template
