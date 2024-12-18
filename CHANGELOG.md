@@ -1,3 +1,6 @@
+## 18 December 2024 - v1.0.8 ##
+* create alternative pricing template 2
+ 
 ## 18 December 2024 - v1.0.7 ##
 * create alternative pricing template
 
