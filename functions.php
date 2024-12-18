@@ -15,6 +15,12 @@ function get_acf_options() {
         $footer_logo = get_field('footer_logo', 'option');
         $social_media = get_field('basic_social_media', 'option');
         $footer_info = get_field('basic_footer_info', 'option');
+        $header_logo = get_field('header_logo', 'option');
+        $header_logo_mobile = get_field('header_logo_mobile', 'option');
+        $services_section = get_field('services_section', 'option');
+        $service_main_image = get_field('service_main_image', 'option');
+        $service_items = get_field('service_item', 'option');
+        $service_link_page = get_field('service_link_page', 'option');
 
         // Format social_media repeater field for the API response
         $formatted_social_media = [];
@@ -77,14 +83,43 @@ function get_acf_options() {
             'whatsapp_number' => get_field('basic_whatsapp_number', 'option'),
             'basic_phone' => get_field('basic_phone', 'option'),
             'footer_logo' => is_array($footer_logo) ? $footer_logo['url'] : $footer_logo,
+            'header_logo' => is_array($header_logo) ? $header_logo['url'] : $header_logo,
+            'header_logo_mobile' => is_array($header_logo_mobile) ? $header_logo_mobile['url'] : $header_logo_mobile,
             'basic_social_media' => $formatted_social_media,
             'basic_contact' => get_field('basic_contact', 'option'),
-            'basic_footer_info' => $formatted_footer_info
+            'basic_footer_info' => $formatted_footer_info,
+
+            'services_section' => $services_section,
+            'service_main_image' => is_array($service_main_image) ? $service_main_image['url'] : $service_main_image,
+            'service_items' => $service_items,
+            'service_link_page' => $service_link_page
         );
         return $options;
     }
     return null;
 }
+
+function register_menu_rest_route() {
+    register_rest_route('custom/v1', '/menus', array(
+        'methods' => WP_REST_Server::READABLE,
+        'callback' => 'get_menus',
+        'permission_callback' => '__return_true',
+    ));
+}
+
+add_action('rest_api_init', 'register_menu_rest_route');
+
+function get_menus() {
+    $menus = wp_get_nav_menus();
+    $menu_items = array();
+
+    foreach ($menus as $menu) {
+        $menu_items[$menu->slug] = wp_get_nav_menu_items($menu->term_id);
+    }
+
+    return $menu_items;
+}
+
 
 class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {

@@ -134,7 +134,7 @@ get_header(); ?>
                                         <div class="flex gap-4 md:gap-6 mb-6">
                                             <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-orange text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                                 <?php if( $service_item['service_item_image'] ): ?>
-                                                    <img src="<?php echo esc_url($service_item['service_item_image']); ?>" alt="<?php echo esc_url($service_item['service_item_title']); ?>" class="w-8 h-8" />
+                                                    <img src="<?php echo esc_url($service_item['service_item_image']); ?>" alt="Services Icon" class="w-8 h-8" />
                                                 <?php endif; ?>
                                             </div>
 
@@ -238,7 +238,7 @@ get_header(); ?>
                                         <div class="flex flex-col items-center gap-2 sm:flex-row md:gap-3">
                                             <?php if( $testimonial['testimonial_image'] ): ?>
                                                 <div class="h-12 w-12 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-14 md:w-14">
-                                                    <img src="<?php echo esc_url($testimonial['testimonial_image']); ?>"alt="Photo by Radu Florin" class="h-full w-full object-cover object-center" />
+                                                    <img src="<?php echo esc_url($testimonial['testimonial_image']); ?>" alt="Testimonial" class="h-full w-full object-cover object-center" />
                                                 </div>
                                             <?php endif; ?>
 
