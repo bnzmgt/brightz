@@ -52,10 +52,10 @@ get_header(); ?>
                     <?php if ($group_name || $group_image || $variants): ?>
                         <div class="odd:bg-white even:bg-slate-50">
                             <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-                                <div class="inner price_groups flex flex-col md:flex-row gap-6 items-center justify-center py-10">
+                                <div class="inner price_groups flex flex-col gap-6 items-start justify-start py-10">
                                     <!-- Group Bio -->
-                                    <div class="group-bio w-full md:w-1/4 items-center justify-center">
-                                        <div class="py-2 px-0 md:p-2 text-center">
+                                    <div class="group-bio w-full md:w-1/4 items-center justify-start">
+                                        <div class="py-2 text-center">
                                             <?php if ($group_image): ?>
                                                 <img src="<?php echo esc_url($group_image); ?>" alt="Image Service" class="mb-4" >
                                             <?php endif; ?>
@@ -68,8 +68,8 @@ get_header(); ?>
 
                                     <!-- Group Items -->
                                     <?php if ($variants): ?>
-                                        <div class="group-items w-full md:w-3/4">
-                                            <div class="grid gap-6 md:grid-cols-2 lg:gap-6">
+                                        <div class="group-items w-full">
+                                            <div class="grid gap-6 md:grid-cols-3 lg:gap-4">
                                                 <?php foreach ($variants as $index => $variant): 
                                                     // Fetch variant data
                                                     $variant_image = $variant['variants_image'];
@@ -89,7 +89,7 @@ get_header(); ?>
                                                     <?php if ($variant_image || $variant_name || $variant_price || $variant_excerpt || $variant_description): ?>
                                                         <div class="item variants flex items-center justify-center p-4 border rounded-lg hover:shadow-md hover:bg-white">
                                                             <div class="w-1/3 shrink-0">                                                
-                                                                <div class="h-20 w-20 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-28 md:w-28 shrink-0">
+                                                                <div class="h-20 w-20 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-20 md:w-20 shrink-0">
                                                                     <?php if ($variant_image): ?>
                                                                         <img src="<?php echo esc_url($variant_image); ?>" alt="" class="h-full w-full object-cover object-center">
                                                                     <?php endif; ?>
@@ -165,7 +165,7 @@ get_header(); ?>
 
                                                                     <?php if ($is_enabled && $whatsapp_number): ?>
                                                                         <a href="https://api.whatsapp.com/send?phone=<?php echo esc_attr($whatsapp_number); ?>&text=<?php echo urlencode($booking_message); ?>" 
-                                                                        class="flex items-start max-w-fit rounded-full border border-white bg-orange text-white px-8 py-2 text-center text-sm font-normal outline-none transition duration-100" 
+                                                                        class="flex items-start max-w-fit rounded-full border border-white bg-orange text-white px-4 py-[6px] text-center text-xs font-normal outline-none transition duration-100" 
                                                                         target="_blank" rel="noopener">
                                                                         Booking Sekarang!
                                                                         </a>
